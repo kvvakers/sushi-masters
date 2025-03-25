@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "axios": "^1.8.4",
+    "material-icons": "^1.13.14",
     "pinia": "^3.0.1",
+    "sass": "^1.86.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },

@@ -26,7 +26,7 @@ defineProps({
   <div>
     <div>
       <label v-if="name.length > 0" :for="name">{{ name }}</label>
-      <input v-model="value" :id="name" :type="type" :placeholder="placeholer" />
+      <input v-model="value" :id="name" :type="type" :placeholder="placeholder" />
     </div>
     <ul v-if="errors.length > 0">
       <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
