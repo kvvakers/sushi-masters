@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("./reset.css");
 @import url("./flex.scss");
+@import url("./grid.scss");
+@import url("./gap.scss");
 
 :root {
   --color-red: rgb(192, 9, 55);
@@ -10,14 +12,36 @@ html,
 body {
   background-color: #efefef;
   font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
 }
 ._container {
   max-width: 1920px;
   margin: 0 auto;
   padding: 0 20px;
 }
+._image {
+  display: block;
+}
 ._image img {
   text-align: center;
   width: 100%;
   object-fit: contain;
+}
+._button-alt,
+._button {
+  display: block;
+  border: 1px solid var(--color-red);
+  width: 100%;
+  padding: 6px 16px;
+  border-radius: 5px;
+}
+._button {
+  background-color: #fff;
+  color: var(--color-red);
+}
+
+._button-alt {
+  background-color: var(--color-red);
+  color: #fff;
 }
