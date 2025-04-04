@@ -2,8 +2,8 @@
 import LayoutDefault from "@/layouts/LayoutDefault.vue";
 import ButtonComponent from "@/components/shared/ButtonComponent.vue";
 import { onMounted, ref } from "vue";
-
 import { getGoods } from "@/api/goods";
+import "@/assets/styles/CatalogueView.scss";
 
 const goods = ref([]);
 
@@ -43,7 +43,7 @@ onMounted(() => {
               </div>
               <div class="_flex _jc-sb _ai_c _gap-x-8">
                 <div class="item-catalogue__price">900грн</div>
-                <ButtonComponent class="item-catalogue__buy _button">В КОШИК</ButtonComponent>
+                <ButtonComponent class="item-catalogue__buy _button-alt">В КОШИК</ButtonComponent>
               </div>
             </div>
           </li>
@@ -53,36 +53,3 @@ onMounted(() => {
     </div>
   </LayoutDefault>
 </template>
-
-<style lang="scss">
-.catalogue__item {
-  border-radius: 15px;
-  overflow: hidden;
-}
-.item-catalogue {
-  &__description {
-    background-color: #e6e6e6;
-    padding: 12px;
-  }
-  &__ingridients {
-    color: #7b7c85;
-    font-size: 1rem;
-  }
-  &__border {
-    border-bottom: 1px solid #fff;
-  }
-  &__title {
-    font-size: 1.7rem;
-    text-transform: uppercase;
-    font-weight: 300;
-  }
-  &__weight {
-    color: #818181;
-    font-size: 1rem;
-  }
-  &__price {
-    font-size: 1.3rem;
-    color: #595959;
-  }
-}
-</style>

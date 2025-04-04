@@ -1,0 +1,34 @@
+.catalogue__item {
+  border-radius: 15px;
+  overflow: hidden;
+}
+.item-catalogue {
+  &__description {
+    background-color: #e6e6e6;
+    padding: 26px 20px;
+  }
+  &__ingridients {
+    color: #7b7c85;
+    font-size: 1rem;
+  }
+  &__border {
+    border-bottom: 1px solid #fff;
+  }
+  &__title {
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+  &__weight {
+    color: #818181;
+    font-size: 1rem;
+  }
+  &__price {
+    font-size: 1.3rem;
+    color: #595959;
+  }
+  &__buy {
+    flex: 0 0 200px;
+    border-radius: 10px;
+  }
+}
