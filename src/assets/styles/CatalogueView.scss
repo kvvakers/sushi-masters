@@ -1,6 +1,11 @@
-.catalogue__item {
-  border-radius: 15px;
-  overflow: hidden;
+.catalogue {
+  &__list {
+    padding: 40px 0;
+  }
+  &__item {
+    border-radius: 15px;
+    overflow: hidden;
+  }
 }
 .item-catalogue {
   &__description {
@@ -12,10 +17,11 @@
     font-size: 1rem;
   }
   &__border {
+    padding-bottom: 12px;
     border-bottom: 1px solid #fff;
   }
   &__title {
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     text-transform: uppercase;
     font-weight: 300;
   }

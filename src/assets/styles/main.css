@@ -28,6 +28,14 @@ body {
   width: 100%;
   object-fit: contain;
 }
+
+._title {
+  text-align: center;
+  font-size: 2rem;
+  line-height: 1.75;
+  font-weight: 600;
+}
+
 ._button-alt,
 ._button {
   display: block;
@@ -35,6 +43,7 @@ body {
   width: 100%;
   padding: 6px 16px;
   border-radius: 5px;
+  text-align: center;
 }
 ._button {
   background-color: #fff;
@@ -44,4 +53,22 @@ body {
 ._button-alt {
   background-color: var(--color-red);
   color: #fff;
+}
+
+._input {
+  label {
+    display: block;
+    margin-bottom: 8px;
+  }
+  input {
+    border: 1px solid #c4bdbd;
+    border-radius: 5px;
+    padding: 6px 16px;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  ul {
+    margin-bottom: 16px;
+    color: var(--color-red);
+  }
 }

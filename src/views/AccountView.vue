@@ -116,7 +116,7 @@ const auth = () => {
         :errors="state.username.errors"
         placeholder="Ім'я"
         name="Ім'я"
-        class="account__input"
+        class="account__input _input"
       />
       <InputComponent
         v-model="state.phone.value"
@@ -125,7 +125,7 @@ const auth = () => {
         placeholder="Телефон"
         name="Номер телефону"
         type="phone"
-        class="account__input"
+        class="account__input _input"
       />
       <InputComponent
         v-model="state.password.value"
@@ -134,7 +134,7 @@ const auth = () => {
         placeholder="Пароль"
         name="Пароль"
         type="password"
-        class="account__input"
+        class="account__input _input"
       />
     </div>
 
@@ -165,23 +165,6 @@ const auth = () => {
     font-size: 2rem;
     color: var(--color-red);
     font-weight: 600;
-  }
-  &__input {
-    label {
-      display: block;
-      margin-bottom: 8px;
-    }
-    input {
-      border: 1px solid #c4bdbd;
-      border-radius: 5px;
-      padding: 6px 16px;
-      width: 100%;
-      margin-bottom: 8px;
-    }
-    ul {
-      margin-bottom: 16px;
-      color: var(--color-red);
-    }
   }
   &__actions {
     span {

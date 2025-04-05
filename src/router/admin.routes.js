@@ -16,9 +16,9 @@ export const adminRoutes = [
         component: () => import("@/views/CatalogueView.vue"),
       },
       {
-        path: "/catalogue-modify",
-        name: "admin-catalogue-modify",
-        component: () => import("@/views/admin/AdminCatalogueModifyView.vue"),
+        path: "/catalogue-editing/:id",
+        name: "catalogue-editing",
+        component: () => import("@/views/admin/EditCatalogueView.vue"),
       },
     ],
   },
