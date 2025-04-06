@@ -19,6 +19,10 @@ defineProps({
     type: Array,
     default: () => [],
   },
+  error: {
+    type: String,
+    default: "",
+  },
 });
 </script>
 
@@ -29,7 +33,10 @@ defineProps({
       <input v-model="value" :id="name" :type="type" :placeholder="placeholder" />
     </div>
     <ul v-if="errors.length > 0">
-      <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+      <li v-for="(item, index) in errors" :key="index">{{ item }}</li>
+    </ul>
+    <ul v-if="error">
+      <li>{{ error }}</li>
     </ul>
   </div>
 </template>

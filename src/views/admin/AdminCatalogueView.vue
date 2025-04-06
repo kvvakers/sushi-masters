@@ -1,18 +1,33 @@
 <script setup>
 import "@/assets/styles/CatalogueView.scss";
-import { goods } from "@/mock/goods.js";
+import { getUrlFromPath } from "@/utils/url.js";
+import { useGoodsStore } from "@/stores/goods";
+import { onMounted } from "vue";
 
-const getUrlFromPath = (path) => {
-  return new URL(path, import.meta.url).href;
+const goodsStore = useGoodsStore();
+
+const getGoodsFromAPI = () => {
+  goodsStore.fetchGoods();
+  goodsStore.fetchCategories();
 };
+
+onMounted(() => {
+  getGoodsFromAPI();
+});
 </script>
 
 <template>
   <div class="catalogue">
     <div class="catalogue__container _container">
-      <h2 class="catalogue__title"></h2>
-      <ul class="catalogue__list _grid _g-template-cols-3 _gap-x-16">
-        <li v-for="(item, index) in goods" :key="index" class="catalogue__item item-catalogue">
+      <ul
+        v-if="goodsStore.goods.length > 0"
+        class="catalogue__list _grid _g-template-cols-3 _gap-x-16"
+      >
+        <li
+          v-for="(item, index) in goodsStore.goods"
+          :key="index"
+          class="catalogue__item item-catalogue"
+        >
           <div class="item-catalogue__image _image">
             <img :src="getUrlFromPath(item.image)" alt="" />
           </div>
@@ -35,8 +50,14 @@ const getUrlFromPath = (path) => {
             </div>
           </div>
         </li>
-        <!-- <li v-for="(item, index) in goods" :key="index">{{ item }}</li> -->
       </ul>
+      <div v-else class="catalogue__not-exists _title">Goods don't exist yet &#128530;</div>
+      <RouterLink
+        :to="{ name: 'catalogue-editing', params: { id: 0 } }"
+        class="item-catalogue__add _button"
+      >
+        Додати товар
+      </RouterLink>
     </div>
   </div>
 </template>

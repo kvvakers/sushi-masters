@@ -4,14 +4,14 @@ import ButtonComponent from "@/components/shared/ButtonComponent.vue";
 import { useRouter } from "vue-router";
 import { ref, reactive, computed } from "vue";
 import { registrate, authorizate } from "@/api/auth";
-import { Token } from "@/api/auth/Token";
+import { Token } from "@/utils/Token";
 
 const isAuth = ref(false);
 const error = ref("");
 const router = useRouter();
 
 const state = reactive({
-  username: {
+  name: {
     value: "",
     errors: [],
   },
@@ -37,20 +37,19 @@ const state = reactive({
 //   errors: [],
 // });
 
-const hasErrors = computed(() => {
-  return (
-    state.username.errors.length > 0 ||
-    state.phone.errors.length > 0 ||
-    state.password.errors.length > 0
-  );
+const hasRegErrors = computed(() => {
+  return state.name.errors.length > 0 || hasAuthErrors.value;
+});
+
+const hasAuthErrors = computed(() => {
+  return state.phone.errors.length > 0 || state.password.errors.length > 0;
 });
 
 const validateName = () => {
-  state.username.errors = [];
-  if (state.username.value.length < 2)
-    state.username.errors.push("Ім'я має буди більше 2 символів");
-  if (!/^[A-Za-zА-Яа-яІіЇїЄєҐґ']+$/.test(state.username.value))
-    state.username.errors.push("Ім'я має складатись лише з літер");
+  state.name.errors = [];
+  if (state.name.value.length < 2) state.name.errors.push("Ім'я має буди більше 2 символів");
+  if (!/^[A-Za-zА-Яа-яІіЇїЄєҐґ']+$/.test(state.name.value))
+    state.name.errors.push("Ім'я має складатись лише з літер");
 };
 
 const validatePhone = () => {
@@ -66,7 +65,7 @@ const validatePassword = () => {
 };
 
 const handleResponse = (res) => {
-  Token.set(res.token);
+  Token.set(res.data.token);
   router.push({ name: "catalogue" });
 };
 const handleError = (err) => {
@@ -84,9 +83,9 @@ const handleError = (err) => {
 };
 
 const reg = () => {
-  if (hasErrors.value) return;
+  if (hasRegErrors.value) return;
   registrate({
-    username: state.username.value,
+    name: state.name.value,
     password: state.password.value,
     phone: state.phone.value,
   })
@@ -95,7 +94,7 @@ const reg = () => {
 };
 
 const auth = () => {
-  if (hasErrors.value) return;
+  if (hasAuthErrors.value) return;
   authorizate({
     phone: state.phone.value,
     password: state.password.value,
@@ -111,9 +110,9 @@ const auth = () => {
     <div>
       <InputComponent
         v-if="!isAuth"
-        v-model="state.username.value"
+        v-model="state.name.value"
         @update:model-value="validateName"
-        :errors="state.username.errors"
+        :errors="state.name.errors"
         placeholder="Ім'я"
         name="Ім'я"
         class="account__input _input"

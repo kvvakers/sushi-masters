@@ -1,5 +1,5 @@
 export class Token {
-  static TOKEN_KEY = "planner_access_token";
+  static TOKEN_KEY = "sushi-token";
 
   static get() {
     return localStorage.getItem(this.TOKEN_KEY) || "";

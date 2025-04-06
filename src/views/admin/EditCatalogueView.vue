@@ -1,32 +1,72 @@
 <script setup>
 import InputComponent from "@/components/shared/InputComponent.vue";
-import { reactive } from "vue";
+import { computed, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { useForm } from "vee-validate";
+import * as yup from "yup";
+import { useGoodsStore } from "@/stores/goods";
 
-const state = reactive({
-  name: {
-    value: "",
-    errors: [],
-  },
-  price: {
-    value: "",
-    errors: [],
-  },
-  ingredients: {
-    value: "",
-    errors: [],
-  },
-  image: {
-    value: "",
-    errors: [],
-  },
-  weight: {
-    value: "",
-    errors: [],
-  },
-  category: {
-    value: "",
-    errors: [],
-  },
+const goodsStore = useGoodsStore();
+const route = useRoute();
+
+const id = parseInt(route.params.id[0]);
+const isEdit = computed(() => id !== 0);
+
+const { defineField, errors, handleSubmit } = useForm({
+  validationSchema: yup.object({
+    name: yup
+      .string()
+      .required("Name is required")
+      .min(3, "Name must be at least 3 characters")
+      .max(100, "Name must be less than 100 characters"),
+    price: yup
+      .number()
+      .required("Price must be required")
+      .min(1, "Price must be bigger than 0")
+      .max(100000, "Price must be less then 100000"),
+    ingredients: yup
+      .string()
+      .required("Ingredients is required")
+      .min(3, "Ingredients must be at least 1 character")
+      .max(250, "Ingredients must be less than 250 character"),
+    image: yup.string().required("Image is required"),
+    weight: yup
+      .string()
+      .required("Weight is required")
+      .min(1, "Weight must be bigger than 1")
+      .max(10000, "Weight musth be less than 10000"),
+    category: yup
+      .string()
+      .oneOf(goodsStore.categories, "Invalid category:" + goodsStore.categories.join(", "))
+      .required("Category is required"),
+  }),
+});
+
+const [name, nameProps] = defineField("name");
+const [price, priceProps] = defineField("price");
+const [ingredients, ingredientsProps] = defineField("ingredients");
+const [image, imageProps] = defineField("image");
+const [weight, weightProps] = defineField("weight");
+const [category, categoryProps] = defineField("category");
+
+const submitForm = () => {
+  console.log("Form submitted");
+};
+
+const handleSubmitForm = handleSubmit(submitForm);
+
+onMounted(() => {
+  if (isEdit.value) {
+    const goods = goodsStore.goods.find((n) => n.id === id);
+    if (goods) {
+      name.value = goods.name;
+      price.value = goods.price;
+      ingredients.value = goods.ingredients;
+      image.value = goods.image;
+      weight.value = goods.weight;
+      category.value = goods.category;
+    }
+  }
 });
 </script>
 
@@ -39,43 +79,49 @@ const state = reactive({
 
       <form @submit.prevent="handleSubmitForm" class="_flex _f-dir-col _gap-y-16">
         <InputComponent
-          v-model="state.name.value"
-          :errors="state.name.errors"
+          v-model="name"
+          v-bind="nameProps"
+          :error="errors.name"
           placeholder="Введіть назву"
           name="Назва"
           class="_input"
         />
         <InputComponent
-          v-model="state.price.value"
-          :errors="state.price.errors"
+          v-model="price"
+          v-bind="priceProps"
+          :error="errors.price"
           placeholder="Введіть віртість"
           name="Вартість"
           class="_input"
         />
         <InputComponent
-          v-model="state.ingredients.value"
-          :errors="state.ingredients.errors"
+          v-model="ingredients"
+          v-bind="ingredientsProps"
+          :error="errors.ingredients"
           placeholder="Введіть інгредієнти"
           name="Інгредієнти"
           class="_input"
         />
         <InputComponent
-          v-model="state.image.value"
-          :errors="state.image.errors"
+          v-model="image"
+          v-bind="imageProps"
+          :error="errors.image"
           placeholder="Введіть посилання на фото"
           name="Фото"
           class="_input"
         />
         <InputComponent
-          v-model="state.weight.value"
-          :errors="state.weight.errors"
+          v-model="weight"
+          v-bind="weightProps"
+          :error="errors.weight"
           placeholder="Введіть вагу"
           name="Вага"
           class="_input"
         />
         <InputComponent
-          v-model="state.category.value"
-          :errors="state.category.errors"
+          v-model="category"
+          v-bind="categoryProps"
+          :error="errors.category"
           placeholder="Оберіть катергорію"
           name="Категорія"
           class="_input"
