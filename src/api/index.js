@@ -1,4 +1,6 @@
 import axios from "axios";
+import { Token } from "@/utils/Token";
+
 const httpProtocol = import.meta.env.VUE_APP_HTTP_PROTOCOL || "http";
 const httpsProtocol = import.meta.env.VUE_APP_HTTPS_PROTOCOL || "https";
 
@@ -11,7 +13,7 @@ axios.interceptors.request.use((config) => {
   config.headers["Content-Type"] = "application/json";
   config.headers["Accept"] = "application/json";
 
-  const token = JSON.parse(localStorage.getItem("access_token"));
+  const token = Token.get();
   const authorizationToken = token ? `Bearer ${token}` : "";
   config.headers.Authorization = authorizationToken;
   return config;

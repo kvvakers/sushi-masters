@@ -6,7 +6,7 @@ export const getGoods = () => {
       .get("sushi")
       .then((res) => resolve(res))
       .catch((err) => {
-        console.log("API /sushi error: " + err);
+        console.log("API get /sushi error: " + err);
         reject(err);
       });
   });
@@ -18,7 +18,19 @@ export const getCategories = () => {
       .get("sushi/categories")
       .then((res) => resolve(res))
       .catch((err) => {
-        console.log("API /sushi/categories/ error: " + err);
+        console.log("API get /sushi/categories/ error: " + err);
+        reject(err);
+      });
+  });
+};
+
+export const postGoogs = (payload) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .post("sushi", payload)
+      .then((res) => resolve(res))
+      .catch((err) => {
+        console.log("API post /sushi error: " + err);
         reject(err);
       });
   });

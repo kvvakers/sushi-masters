@@ -5,6 +5,7 @@ import { useRoute } from "vue-router";
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 import { useGoodsStore } from "@/stores/goods";
+import { postGoogs } from "@/api/goods";
 
 const goodsStore = useGoodsStore();
 const route = useRoute();
@@ -50,7 +51,16 @@ const [weight, weightProps] = defineField("weight");
 const [category, categoryProps] = defineField("category");
 
 const submitForm = () => {
-  console.log("Form submitted");
+  postGoogs([
+    {
+      name: name.value,
+      price: price.value,
+      ingredients: ingredients.value,
+      image: image.value,
+      weight: weight.value,
+      category: category.value,
+    },
+  ]);
 };
 
 const handleSubmitForm = handleSubmit(submitForm);

@@ -8,13 +8,9 @@ import "@/assets/styles/CatalogueView.scss";
 
 const goodsStore = useGoodsStore();
 
-const getGoodsFromAPI = () => {
+onMounted(() => {
   goodsStore.fetchGoods();
   goodsStore.fetchCategories();
-};
-
-onMounted(() => {
-  getGoodsFromAPI();
 });
 </script>
 

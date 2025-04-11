@@ -6,13 +6,9 @@ import { onMounted } from "vue";
 
 const goodsStore = useGoodsStore();
 
-const getGoodsFromAPI = () => {
+onMounted(() => {
   goodsStore.fetchGoods();
   goodsStore.fetchCategories();
-};
-
-onMounted(() => {
-  getGoodsFromAPI();
 });
 </script>
 
