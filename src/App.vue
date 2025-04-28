@@ -1,16 +1,10 @@
 <script setup>
-import { RouterView, useRouter } from "vue-router";
-import { useUserStore } from "./stores/user";
-import { onMounted } from "vue";
+import { RouterView } from "vue-router";
 
-const userStore = useUserStore();
-const router = useRouter();
+import { onMounted } from "vue";
 
 onMounted(() => {
   console.log("App mounted");
-  userStore.fetchUser().catch(() => {
-    router.push({ name: "account" });
-  });
 });
 </script>
 

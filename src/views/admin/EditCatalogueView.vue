@@ -6,6 +6,7 @@ import { useForm } from "vee-validate";
 import * as yup from "yup";
 import { useGoodsStore } from "@/stores/goods";
 import { postGoogs } from "@/api/goods";
+import { fileToBase64 } from "@/utils/fileToBase64";
 
 const goodsStore = useGoodsStore();
 const route = useRoute();
@@ -30,7 +31,12 @@ const { defineField, errors, handleSubmit } = useForm({
       .required("Ingredients is required")
       .min(3, "Ingredients must be at least 1 character")
       .max(250, "Ingredients must be less than 250 character"),
-    image: yup.string().required("Image is required"),
+    image: yup
+      .mixed()
+      .required("Image is required")
+      .test("fileType", "Unsupported file type", (value) => {
+        return !value || ["image/jpeg", "image/png", "image/jpg"].includes(value.type);
+      }),
     weight: yup
       .string()
       .required("Weight is required")
@@ -50,17 +56,19 @@ const [image, imageProps] = defineField("image");
 const [weight, weightProps] = defineField("weight");
 const [category, categoryProps] = defineField("category");
 
-const submitForm = () => {
-  postGoogs([
-    {
+const submitForm = async () => {
+  const base64String = await fileToBase64(image.value);
+
+  postGoogs({
+    image: base64String,
+    sushi: {
       name: name.value,
       price: price.value,
       ingredients: ingredients.value,
-      image: image.value,
       weight: weight.value,
       category: category.value,
     },
-  ]);
+  });
 };
 
 const handleSubmitForm = handleSubmit(submitForm);
@@ -87,7 +95,7 @@ onMounted(() => {
         {{ isEdit ? "Редагувати" : "Додати" }}
       </h1>
 
-      <form @submit.prevent="handleSubmitForm" class="_flex _f-dir-col _gap-y-16">
+      <form @submit.prevent="submitForm" class="_flex _f-dir-col _gap-y-16">
         <InputComponent
           v-model="name"
           v-bind="nameProps"
@@ -113,10 +121,10 @@ onMounted(() => {
           class="_input"
         />
         <InputComponent
-          v-model="image"
+          @change="(e) => (image = e.target.files[0])"
+          type="file"
           v-bind="imageProps"
           :error="errors.image"
-          placeholder="Введіть посилання на фото"
           name="Фото"
           class="_input"
         />

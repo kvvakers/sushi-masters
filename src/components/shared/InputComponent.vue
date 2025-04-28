@@ -24,13 +24,20 @@ defineProps({
     default: "",
   },
 });
+const emits = defineEmits(["change"]);
 </script>
 
 <template>
   <div>
     <div>
       <label v-if="name.length > 0" :for="name">{{ name }}</label>
-      <input v-model="value" :id="name" :type="type" :placeholder="placeholder" />
+      <input
+        v-model="value"
+        :id="name"
+        :type="type"
+        :placeholder="placeholder"
+        @change="(e) => emits('change', e)"
+      />
     </div>
     <ul v-if="errors.length > 0">
       <li v-for="(item, index) in errors" :key="index">{{ item }}</li>
