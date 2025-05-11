@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { getUser } from "../api/user";
+import { withErrorHandling } from "@/api/error";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
@@ -15,7 +16,9 @@ export const useUserStore = defineStore("user", {
       if (this._user !== undefined) {
         return Promise.resolve(this._user);
       }
-      return getUser()
+      return withErrorHandling(
+        getUser()
+      )
         .then((res) => {
           console.log(res);
           this._user = res.data;

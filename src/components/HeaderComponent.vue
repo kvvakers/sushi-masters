@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import { Token } from '@/utils/Token';
+
+</script>
+
 <template>
   <header class="header">
     <div class="header__top _flex _ai-c _jc-c">
@@ -13,7 +18,11 @@
         </div>
         <div class="bottom-header__end">
           <div class="_flex _jc-sb _ai-c">
-            <RouterLink to="/account" class="_flex _ai-c login">
+            <RouterLink v-if="Token.exists()" to="/log-out" class="_flex _ai-c login">
+              <i class="material-icons">logout</i>
+              Вийти
+            </RouterLink>
+            <RouterLink v-else to="/account" class="_flex _ai-c login">
               <i class="material-icons">person</i>
               Увійти
             </RouterLink>
