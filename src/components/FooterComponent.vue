@@ -54,36 +54,51 @@
 </template>
 
 <style lang="scss">
-.footer__contacts {
-  color: #595959;
-  .title {
-    font-weight: 700;
-    font-size: 24px;
-    margin-bottom: 20px;
+.footer {
+
+  &__top,
+  &__bottom {
+    padding: 12px 0;
   }
-  ul li {
-    padding: 5px 0;
-  }
-  ul li a {
-    font-size: 18px;
-  }
-  a:hover {
-    color: #b2030d;
-  }
-  @media (max-width: 992px) {
-    & > li {
-      flex: 1 1 45%;
+
+  &__bottom {
+    ._image {
+      width: 24px;
     }
   }
-  @media (max-width: 560px) {
-    & > li {
-      flex: 1 1 100%;
+
+  &__contacts {
+    color: #595959;
+
+    .title {
+      font-weight: 700;
+      font-size: 24px;
+      margin-bottom: 20px;
     }
-  }
-}
-.footer__bottom {
-  ._image {
-    width: 24px;
+
+    ul li {
+      padding: 5px 0;
+    }
+
+    ul li a {
+      font-size: 18px;
+    }
+
+    a:hover {
+      color: #b2030d;
+    }
+
+    @media (max-width: 992px) {
+      &>li {
+        flex: 1 1 45%;
+      }
+    }
+
+    @media (max-width: 560px) {
+      &>li {
+        flex: 1 1 100%;
+      }
+    }
   }
 }
 </style>

@@ -1,5 +1,6 @@
 <script setup>
 import ButtonComponent from "@/components/shared/ButtonComponent.vue";
+import { useCartStore } from "@/stores/cart";
 import { getUrlFromPath } from "@/utils/url";
 
 defineProps({
@@ -9,7 +10,13 @@ defineProps({
   isAdmin: {
     default: false,
   }
-})
+});
+
+const cartStore = useCartStore();
+
+const addToCart = (id) => {
+  cartStore.addToCart(id)
+}
 
 </script>
 
@@ -35,9 +42,59 @@ defineProps({
           </RouterLink>
         </template>
         <template v-else>
-          <ButtonComponent class="item-catalogue__buy _button-alt">В КОШИК</ButtonComponent>
+          <ButtonComponent @click="addToCart(item.id)" class="item-catalogue__buy _button-alt">В КОШИК</ButtonComponent>
         </template>
       </div>
     </div>
   </li>
 </template>
+
+<style lang="scss">
+.item-catalogue {
+  background-color: #e6e6e6;
+  &__image {
+    height: 400px;
+    overflow: hidden;
+    img {
+      object-fit: cover;
+    }
+  }
+  &__description {
+    padding: 26px 20px;
+  }
+  &__ingridients {
+    color: #7b7c85;
+    font-size: 1rem;
+  }
+  &__border {
+    padding-bottom: 12px;
+    border-bottom: 1px solid #fff;
+  }
+  &__title {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+  &__weight {
+    color: #818181;
+    font-size: 1rem;
+  }
+  &__price {
+    font-size: 1.3rem;
+    color: #595959;
+  }
+  &__buy {
+    flex: 0 0 200px;
+    border-radius: 10px;
+  }
+  &__add {
+    font-weight: 500;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+</style>
