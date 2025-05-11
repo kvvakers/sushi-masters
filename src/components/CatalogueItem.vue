@@ -2,6 +2,7 @@
 import ButtonComponent from "@/components/shared/ButtonComponent.vue";
 import { useCartStore } from "@/stores/cart";
 import { getUrlFromPath } from "@/utils/url";
+import { notify } from "@/utils/notify";
 
 defineProps({
   item: {
@@ -15,7 +16,8 @@ defineProps({
 const cartStore = useCartStore();
 
 const addToCart = (id) => {
-  cartStore.addToCart(id)
+  cartStore.addToCart(id);
+  notify("test");
 }
 
 </script>
