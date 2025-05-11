@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { getCartList } from "@/api/cart";
 import { withErrorHandling } from "@/api/error";
 import { postCartList } from "@/api/cart";
+import { notify } from "@/utils/notify";
 
 export const useCartStore = defineStore("cart", {
   state: () => ({
@@ -32,10 +33,12 @@ export const useCartStore = defineStore("cart", {
       )
         .then((res) => {
           this._cartList = res.data;
-          console.log(this._cartList)
+          console.log(this._cartList);
+          notify("test");
         })
         .catch((err) => {
           console.log("addToCart error ", err);
+          throw new Error();
         });
     },
     fetchCart() {

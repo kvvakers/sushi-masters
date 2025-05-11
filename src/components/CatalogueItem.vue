@@ -1,8 +1,9 @@
 <script setup>
 import ButtonComponent from "@/components/shared/ButtonComponent.vue";
+import { NotificationType } from "@/enums/NotificationType";
 import { useCartStore } from "@/stores/cart";
-import { getUrlFromPath } from "@/utils/url";
 import { notify } from "@/utils/notify";
+import { getUrlFromPath } from "@/utils/url";
 
 defineProps({
   item: {
@@ -16,8 +17,9 @@ defineProps({
 const cartStore = useCartStore();
 
 const addToCart = (id) => {
-  cartStore.addToCart(id);
-  notify("test");
+  cartStore.addToCart(id)
+  .then(() => notify("Cart updated successfully! 🛒", NotificationType.SUCCESS))
+  .catch(() => notify("Something went wrong! 😒", NotificationType.ERROR));
 }
 
 </script>
@@ -54,41 +56,51 @@ const addToCart = (id) => {
 <style lang="scss">
 .item-catalogue {
   background-color: #e6e6e6;
+
   &__image {
     height: 400px;
     overflow: hidden;
+
     img {
       object-fit: cover;
     }
   }
+
   &__description {
     padding: 26px 20px;
   }
+
   &__ingridients {
     color: #7b7c85;
     font-size: 1rem;
   }
+
   &__border {
     padding-bottom: 12px;
     border-bottom: 1px solid #fff;
   }
+
   &__title {
     font-size: 1.3rem;
     text-transform: uppercase;
     font-weight: 300;
   }
+
   &__weight {
     color: #818181;
     font-size: 1rem;
   }
+
   &__price {
     font-size: 1.3rem;
     color: #595959;
   }
+
   &__buy {
     flex: 0 0 200px;
     border-radius: 10px;
   }
+
   &__add {
     font-weight: 500;
     position: fixed;

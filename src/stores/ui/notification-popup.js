@@ -1,3 +1,4 @@
+import { NotificationType } from '@/enums/NotificationType';
 import { defineStore } from 'pinia'
 
 export const useNotificationPopupStore = defineStore('notification-popup', {
@@ -18,7 +19,7 @@ export const useNotificationPopupStore = defineStore('notification-popup', {
     },
   },
   actions: {
-    show(message, type = 'info') {
+    show(message, type = NotificationType.INFO) {
       this._message = message;
       this._type = type;
       this._visible = true;

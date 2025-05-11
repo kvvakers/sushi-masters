@@ -42,7 +42,7 @@ watch(() => store.visible, (newVal) => {
     &.success {
       border-left: 5px solid #4CAF50;
     }
-    .error {
+    &.error {
       border-left: 5px solid #F44336;
     }
     &.info {
