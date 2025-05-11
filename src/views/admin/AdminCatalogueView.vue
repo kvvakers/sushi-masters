@@ -47,7 +47,7 @@ onMounted(() => {
           </div>
         </li>
       </ul>
-      <div v-else class="catalogue__not-exists _title">Goods don't exist yet &#128530;</div>
+      <div v-else class="catalogue__not-exists _title">Товарів не існує! &#128530;</div>
       <RouterLink
         :to="{ name: 'catalogue-editing', params: { id: 0 } }"
         class="item-catalogue__add _button"

@@ -11,26 +11,28 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-  console.log("beforeEach run");
   if (to.name === "account") {
     Token.remove();
     return next();
   }
+  const userStore = useUserStore();
   if (from.name === undefined) {
-    console.log(1);
     if (!Token.exists()) {
-      console.log(1.1);
       return next({ name: "account" });
     }
-    console.log(2);
-    const userStore = useUserStore();
-    userStore
-      .fetchUser()
-      .then(() => next())
-      .catch(() => next({ name: "account" }));
-    console.log(3);
+
+    try {
+      await userStore.fetchUser();
+      console.log(userStore.user);
+    } catch {
+      return next({ name: "account" });
+    }
   }
-  console.log(4);
+  if (to.matched.some((record) => record.meta.requiresAdmin)) {
+    if (userStore.user === undefined || userStore.userRole !== "ROLE_ADMIN") {
+      return next({ name: "catalogue" });
+    }
+  }
   next();
 });
 

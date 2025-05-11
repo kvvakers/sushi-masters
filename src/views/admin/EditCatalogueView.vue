@@ -6,7 +6,6 @@ import { useForm } from "vee-validate";
 import * as yup from "yup";
 import { useGoodsStore } from "@/stores/goods";
 import { postGoogs } from "@/api/goods";
-import { fileToBase64 } from "@/utils/fileToBase64";
 
 const goodsStore = useGoodsStore();
 const route = useRoute();
@@ -14,6 +13,7 @@ const route = useRoute();
 const id = parseInt(route.params.id[0]);
 const isEdit = computed(() => id !== 0);
 
+//await goodsStore.fetchCategories();
 const { defineField, errors, handleSubmit } = useForm({
   validationSchema: yup.object({
     name: yup
@@ -57,18 +57,22 @@ const [weight, weightProps] = defineField("weight");
 const [category, categoryProps] = defineField("category");
 
 const submitForm = async () => {
-  const base64String = await fileToBase64(image.value);
+  const formData = new FormData();
 
-  postGoogs({
-    image: base64String,
-    sushi: {
-      name: name.value,
-      price: price.value,
-      ingredients: ingredients.value,
-      weight: weight.value,
-      category: category.value,
-    },
-  });
+  if (image.value) {
+    formData.append("image", image.value);
+  }
+  const sushiData = {
+    name: name.value,
+    price: price.value,
+    ingredients: ingredients.value,
+    weight: weight.value,
+    category: category.value,
+  };
+
+  formData.append("sushi", new Blob([JSON.stringify(sushiData)], { type: "application/json" }));
+  console.log(formData);
+  await postGoogs(formData);
 };
 
 const handleSubmitForm = handleSubmit(submitForm);
@@ -95,7 +99,7 @@ onMounted(() => {
         {{ isEdit ? "Редагувати" : "Додати" }}
       </h1>
 
-      <form @submit.prevent="submitForm" class="_flex _f-dir-col _gap-y-16">
+      <form @submit.prevent="handleSubmitForm" class="_flex _f-dir-col _gap-y-16">
         <InputComponent
           v-model="name"
           v-bind="nameProps"

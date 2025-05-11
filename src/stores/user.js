@@ -9,6 +9,9 @@ export const useUserStore = defineStore("user", {
     user() {
       return this._user;
     },
+    userRole() {
+      return this._user.role;
+    },
   },
   actions: {
     fetchUser() {

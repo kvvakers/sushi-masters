@@ -10,8 +10,14 @@ axios.defaults.http = import.meta.env.NODE_ENV === "production" ? false : httpPr
 axios.defaults.https = import.meta.env.NODE_ENV === "production" ? true : httpsProtocol === "https";
 
 axios.interceptors.request.use((config) => {
-  config.headers["Content-Type"] = "application/json";
-  config.headers["Accept"] = "application/json";
+  const isFormData = config.data instanceof FormData;
+
+  if (!isFormData) {
+    config.headers["Content-Type"] = "application/json";
+    config.headers["Accept"] = "application/json";
+  } else {
+    config.headers["Content-Type"] = "multipart/form-data";
+  }
 
   const token = Token.get();
   const authorizationToken = token ? `Bearer ${token}` : "";

@@ -17,7 +17,7 @@ onMounted(() => {
 <template>
   <LayoutDefault>
     <div class="catalogue">
-      <div class="catalogue__container _container">
+      <div class="catalogue__container _container" v-if="goodsStore.goods === undefined">
         <h2 class="catalogue__title">Каталог</h2>
         <ul class="catalogue__list _grid _g-template-cols-3 _gap-x-16">
           <li
@@ -44,6 +44,15 @@ onMounted(() => {
           </li>
         </ul>
       </div>
+      <div class="catalogue__container _container" v-else>
+        <div class="catalogue__title _title">Товарів не існує! &#128530;</div>
+      </div>
     </div>
   </LayoutDefault>
 </template>
+
+<style>
+.catalogue {
+  padding: 60px 0;
+}
+</style>
