@@ -61,6 +61,9 @@
     padding: 12px 0;
   }
 
+  &__top {
+    border-top: 1px solid #8f8787;
+  }
   &__bottom {
     ._image {
       width: 24px;
