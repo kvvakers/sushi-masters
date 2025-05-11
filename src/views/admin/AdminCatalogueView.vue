@@ -1,6 +1,7 @@
 <script setup>
 import "@/assets/styles/CatalogueView.scss";
 import CatalogueItem from "@/components/CatalogueItem.vue";
+import ItemsNotExists from "@/components/ItemsNotExists.vue";
 import { useGoodsStore } from "@/stores/goods";
 import { onMounted } from "vue";
 
@@ -13,7 +14,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="catalogue">
+  <div class="catalogue _section">
     <div class="catalogue__container _container">
       <ul
         v-if="goodsStore.goods.length > 0"
@@ -21,7 +22,7 @@ onMounted(() => {
       >
           <CatalogueItem v-for="(item, index) in goodsStore.goods" :key="index" :item="item" :is-admin="true" class="catalogue__item" />
       </ul>
-      <div v-else class="catalogue__not-exists _title">Товарів не існує! &#128530;</div>
+      <ItemsNotExists v-else />
       <RouterLink
         :to="{ name: 'catalogue-editing', params: { id: 0 } }"
         class="item-catalogue__add _button"
