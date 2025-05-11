@@ -6,6 +6,7 @@
 
 :root {
   --color-red: rgb(192, 9, 55);
+  --color-almost-red: rgba(192, 9, 55, 0.5);
 }
 
 html,
@@ -44,6 +45,10 @@ body {
   padding: 6px 16px;
   border-radius: 5px;
   text-align: center;
+}
+._button-alt:focus,
+._button:focus {
+  box-shadow: 4px 4px 8px var(--color-almost-red);
 }
 ._button {
   background-color: #fff;

@@ -1,5 +1,5 @@
-<script setup>
-import { useUserStore } from "@/stores/user";
+<script setup lang="ts">
+import { useUserStore } from '@/stores/user';
 
 const userStore = useUserStore();
 </script>
@@ -18,13 +18,24 @@ const userStore = useUserStore();
           <a href="tel=0509175657">+38 050 917 5657</a>
         </div>
         <div class="bottom-header__end">
-          <div class="_flex _jc-sb _ai-c">
-            <RouterLink v-if="userStore.user === undefined" to="/account" class="_flex _ai-c login">
+          <div class="_flex _jc-sb _ai-c _gap-x-16">
+            <template v-if="userStore.exists">
+              <RouterLink v-if="userStore.userRole" to="/log-out" class="_flex _ai-c _gap-x-8">
+                <i class="material-icons">manage_accounts</i>
+                Адмін
+              </RouterLink>
+              <RouterLink to="/cart" class="_flex _ai-c _gap-x-8">
+                <i class="material-icons basket">shopping_basket</i>
+                Кошик
+              </RouterLink>
+              <RouterLink to="/log-out" class="_flex _ai-c _gap-x-8">
+                <i class="material-icons">logout</i>
+                Вийти
+              </RouterLink>
+            </template>
+            <RouterLink v-else to="/account" class="_flex _ai-c _gap-x-8">
               <i class="material-icons">person</i>
               Увійти
-            </RouterLink>
-            <RouterLink to="/cart">
-              <i class="material-icons basket">shopping_basket</i>
             </RouterLink>
           </div>
         </div>
@@ -39,33 +50,31 @@ const userStore = useUserStore();
     background-color: #ece00fff;
     padding: 20px 0;
   }
+
   &__bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #8f8787;
     padding: 18px 0;
+
     .bottom-header__start {
       span {
         font-size: 24px;
         margin-right: 25px;
       }
+
       a {
         font-size: 18px;
       }
+
       a:hover {
         color: #071f77;
       }
     }
+
     .bottom-header__end {
       font-size: 18px;
-      .login {
-        margin-right: 30px;
-      }
-      .login:hover,
-      .basket:hover {
-        cursor: pointer;
-      }
     }
   }
 }

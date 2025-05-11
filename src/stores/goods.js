@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { getCategories, getGoods } from "@/api/goods";
+import { withErrorHandling } from "@/api/error";
 
 export const useGoodsStore = defineStore("goods", {
   state: () => ({
@@ -19,7 +20,9 @@ export const useGoodsStore = defineStore("goods", {
       if (this._goods.length) {
         return Promise.resolve(this._goods);
       }
-      return getGoods()
+      return withErrorHandling(
+        getGoods()
+      )
         .then((res) => {
           console.log(res);
           this._goods = res.data;
@@ -32,7 +35,9 @@ export const useGoodsStore = defineStore("goods", {
       if (this._categories.length) {
         return Promise.resolve(this._categories);
       }
-      return getCategories()
+      return withErrorHandling(
+        getCategories()
+      )
         .then((res) => {
           this._categories = res.data;
         })
