@@ -18,7 +18,7 @@ onMounted(() => {
   <LayoutDefault>
     <div class="catalogue _section">
       <div class="catalogue__container _container">
-        <h2 class="catalogue__title _title">Каталог</h2>
+        <h2 class="catalogue__title _title">{{ $t("catalogue") }}</h2>
         <ul v-if="goodsStore.goods.length > 0" class="catalogue__list _grid _g-template-cols-3 _gap-x-16">
           <CatalogueItem v-for="(item, index) in goodsStore.goods" :key="index" :item="item" class="catalogue__item" />
         </ul>

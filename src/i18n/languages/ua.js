@@ -4,6 +4,7 @@ export default {
   "sign-in": "Увійти",
   "sign-up": "Рєєстрація",
   "sign-out": "Вийти",
+  "sign-out-confirm": "Ви дійсно хочете вийти?",
 
   "first-name": "Ім'я",
   "first-name-placeholder": "Введіть ім'я",
@@ -15,4 +16,46 @@ export default {
   "city": "Харків",
   "admin": "Адмін",
   "cart": "Кошик",
+
+  "add-good": "Додати товар",
+  "edit-good": "Редагувати товар",
+
+  "title": "Назва",
+  "price": "Вартість",
+  "ingridients": "Інгрідієнти",
+  "photo": "Фото",
+  "weight": "Вага",
+  "category": "Категорія",
+
+  "enter-title": "Введіть назву",
+  "enter-price": "Введіть вaртість",
+  "enter-ingridients": "Введіть інгредієнти",
+  "enter-category": "Оберіть катергорію",
+  "enter-weight": "Введіть вагу",
+
+  "save": "Зберегти",
+  "create": "Створити",
+
+  "catalogue": "Каталог",
+  "orders": "Замовлення",
+
+  "home": "Головна",
+  "total": "Разом",
+
+  "list-empty": "Нажаль список пустий!",
+
+  "about-company": "Про компанію",
+  "reviews": "Відгуки",
+  "promotion": "Акції",
+  "bonus": "Бонуси",
+  "legal-info": "Юридична інформація",
+  "public-offer": "Публічна оферта",
+  "politics": "Політика конфеденційності",
+  "shipping-restaraunts": "Доставка та ресторани",
+  "shipping-self-pickup": "Доставка та самовивіз",
+  "our-restaraunts": "Наші ресторани",
+  "support": "Підтримка",
+
+  "edit": "Редагувати",
+  "add-to-cart": "В кошик",
 }

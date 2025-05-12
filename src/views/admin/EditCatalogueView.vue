@@ -96,7 +96,7 @@ onMounted(() => {
   <div class="edit-catalogue">
     <div class="edit-catalogue__container _container">
       <h1 class="_title">
-        {{ isEdit ? "Редагувати" : "Додати" }}
+        {{ isEdit ?  $t("edit-good") : $t("add-good") }}
       </h1>
 
       <form @submit.prevent="handleSubmitForm" class="_flex _f-dir-col _gap-y-16">
@@ -104,24 +104,24 @@ onMounted(() => {
           v-model="name"
           v-bind="nameProps"
           :error="errors.name"
-          placeholder="Введіть назву"
-          name="Назва"
+          :placeholder="$t('enter-title')"
+          :name="$t('title')"
           class="_input"
         />
         <InputComponent
           v-model="price"
           v-bind="priceProps"
           :error="errors.price"
-          placeholder="Введіть віртість"
-          name="Вартість"
+          :placeholder="$t('enter-price')"
+          :name="$t('price')"
           class="_input"
         />
         <InputComponent
           v-model="ingredients"
           v-bind="ingredientsProps"
           :error="errors.ingredients"
-          placeholder="Введіть інгредієнти"
-          name="Інгредієнти"
+          :placeholder="$t('enter-ingridients')"
+          :name="$t('ingridients')"
           class="_input"
         />
         <InputComponent
@@ -129,28 +129,28 @@ onMounted(() => {
           type="file"
           v-bind="imageProps"
           :error="errors.image"
-          name="Фото"
+          :name="$t('photo')"
           class="_input"
         />
         <InputComponent
           v-model="weight"
           v-bind="weightProps"
           :error="errors.weight"
-          placeholder="Введіть вагу"
-          name="Вага"
+          :placeholder="$t('enter-weight')"
+          :name="$t('weight')"
           class="_input"
         />
         <InputComponent
           v-model="category"
           v-bind="categoryProps"
           :error="errors.category"
-          placeholder="Оберіть катергорію"
-          name="Категорія"
+          :placeholder="$t('enter-category')"
+          :name="$t('category')"
           class="_input"
         />
 
         <button type="submit" class="_button-alt">
-          {{ isEdit ? "Зберегти" : "Створити" }}
+          {{ isEdit ? $t('save') : $t('create') }}
         </button>
       </form>
     </div>

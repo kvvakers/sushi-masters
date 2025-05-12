@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { useUserStore } from '@/stores/user';
-import { availableLocales } from '@/i18n';
-import { useI18n } from 'vue-i18n';
+import { useUserStore } from "@/stores/user";
+import { availableLocales } from "@/i18n";
+import { useI18n } from "vue-i18n";
 
 const userStore = useUserStore();
-const { locale } = useI18n()
+const { locale } = useI18n();
 
 const switchLocale = (newLocale) => {
-  locale.value = newLocale
-  localStorage.setItem('lang', newLocale);
-}
+  locale.value = newLocale;
+  localStorage.setItem("lang", newLocale);
+};
 </script>
 
 <template>
@@ -33,13 +33,13 @@ const switchLocale = (newLocale) => {
               </option>
             </select>
             <template v-if="userStore.exists">
-              <RouterLink v-if="userStore.userRole" to="/log-out" class="_flex _ai-c _gap-x-8">
+              <RouterLink v-if="userStore.userRole" to="/admin" class="_flex _ai-c _gap-x-8">
                 <i class="material-icons">manage_accounts</i>
-                {{ $t('admin') }}
+                {{ $t("admin") }}
               </RouterLink>
               <RouterLink to="/cart" class="_flex _ai-c _gap-x-8">
                 <i class="material-icons basket">shopping_basket</i>
-                {{ $t('cart') }}
+                {{ $t("cart") }}
               </RouterLink>
               <RouterLink to="/log-out" class="_flex _ai-c _gap-x-8">
                 <i class="material-icons">logout</i>

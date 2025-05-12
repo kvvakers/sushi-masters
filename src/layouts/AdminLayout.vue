@@ -2,11 +2,11 @@
 import { useRoute } from "vue-router";
 const tabs = [
   {
-    name: "Catalogue",
+    name: "catalogue",
     route: "admin-catalogue",
   },
   {
-    name: "Orders",
+    name: "orders",
     route: "admin-orders",
   },
 ];
@@ -23,9 +23,9 @@ const route = useRoute();
         </router-link>
         <div class="_flex _ai-c _gap-x-32">
           <router-link :to="{ name: 'catalogue' }" class="top-header__title">
-            Головна
+            {{$t("home")}}
           </router-link>
-          <h1 class="top-header__title">Adminka</h1>
+          <h1 class="top-header__title">{{$t("admin")}}</h1>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@ const route = useRoute();
         <ul class="tabs-admin-header__items _flex _ai-c _jc-c _gap-x-16">
           <li v-for="(item, index) in tabs" :key="index" class="tabs-admin-header__item">
             <RouterLink :to="{ name: item.route }" active-class="_active" class="tabs-admin-header__link">
-              {{ item.name }}
+              {{ $t(item.name) }}
             </RouterLink>
           </li>
         </ul>
@@ -58,8 +58,6 @@ const route = useRoute();
   &__items {
     margin-top: 16px;
   }
-
-  &__item {}
 
   &__link {
     padding: 0 32px 16px;

@@ -27,7 +27,7 @@ onMounted(() => {
         :to="{ name: 'catalogue-editing', params: { id: 0 } }"
         class="item-catalogue__add _button"
       >
-        Додати товар
+        {{ $t("add-good") }}
       </RouterLink>
     </div>
   </div>

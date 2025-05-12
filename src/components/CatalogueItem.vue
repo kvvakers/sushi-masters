@@ -42,11 +42,11 @@ const addToCart = (id) => {
         <template v-if="isAdmin">
           <RouterLink :to="{ name: 'catalogue-editing', params: { id: item.id } }"
             class="item-catalogue__buy _button-alt">
-            РЕДАГУВАТИ
+            {{ $t("edit") }}
           </RouterLink>
         </template>
         <template v-else>
-          <ButtonComponent @click="addToCart(item.id)" class="item-catalogue__buy _button-alt">В КОШИК</ButtonComponent>
+          <ButtonComponent @click="addToCart(item.id)" class="item-catalogue__buy _button-alt">{{ $t("add-to-cart") }}</ButtonComponent>
         </template>
       </div>
     </div>
@@ -97,6 +97,7 @@ const addToCart = (id) => {
   }
 
   &__buy {
+    text-transform: uppercase;
     flex: 0 0 200px;
     border-radius: 10px;
   }

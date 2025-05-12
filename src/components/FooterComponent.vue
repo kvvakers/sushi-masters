@@ -6,28 +6,28 @@
           <li>
             <div class="title">SUSHI MASTER</div>
             <ul>
-              <li><a href="#">Про компанію</a></li>
-              <li><a href="#">Відгуки</a></li>
-              <li><a href="#">Акції</a></li>
-              <li><a href="#">Бонуси</a></li>
+              <li><a href="#">{{ $t("about-company") }}</a></li>
+              <li><a href="#">{{ $t("reviews") }}</a></li>
+              <li><a href="#">{{ $t("promotion") }}</a></li>
+              <li><a href="#">{{ $t("bonus") }}</a></li>
             </ul>
           </li>
           <li>
-            <div class="title">Юридична інформація</div>
+            <div class="title">{{ $t("legal-info") }}</div>
             <ul>
-              <li><a href="#">Публічна оферта</a></li>
-              <li><a href="#">Політика конфеденційності</a></li>
+              <li><a href="#">{{ $t("public-offer") }}</a></li>
+              <li><a href="#">{{ $t("politics") }}</a></li>
             </ul>
           </li>
           <li>
-            <div class="title">Доставка та ресторани</div>
+            <div class="title">{{ $t("shipping-restaraunts") }}</div>
             <ul>
-              <li><a href="#">Доставка та самовивіз</a></li>
-              <li><a href="#">Наші ресторани</a></li>
+              <li><a href="#">{{ $t("shipping-self-pickup") }}</a></li>
+              <li><a href="#">{{ $t("our-restaraunts") }}</a></li>
             </ul>
           </li>
           <li>
-            <div class="title">Підтримка</div>
+            <div class="title">{{ $t("support") }}</div>
             <ul>
               <li><a href="tel=0509175657">+38 050 917 5657</a></li>
               <li><a href="mailto:alina.tokmakova@nure.ua">sushimasters@gmail.com</a></li>

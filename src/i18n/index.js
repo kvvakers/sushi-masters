@@ -13,7 +13,7 @@ const loadMessages = () => {
       messages[locale] = files[path].default;
       availableLocales.push({
         locale,
-        label: files[path].default.__label || locale, // optional label override
+        label: files[path].default.__label || locale,
       });
     }
   }
