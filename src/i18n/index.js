@@ -1,3 +1,4 @@
+import { Locale } from '@/utils/browser/Locale';
 import { createI18n } from 'vue-i18n'
 
 export const availableLocales = [];
@@ -21,10 +22,12 @@ const loadMessages = () => {
   return messages;
 }
 
+const loadLocale = () => Locale.get() || "ua";
+
 const createI18nInstance = () => {
   return createI18n({
     legacy: false,
-    locale: 'ua',
+    locale: loadLocale(),
     fallbackLocale: 'ua',
     messages: loadMessages(),
   })

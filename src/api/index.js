@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Token } from "@/utils/Token";
+import { Token } from "@/utils/browser/Token";
 
 const httpProtocol = import.meta.env.VUE_APP_HTTP_PROTOCOL || "http";
 const httpsProtocol = import.meta.env.VUE_APP_HTTPS_PROTOCOL || "https";

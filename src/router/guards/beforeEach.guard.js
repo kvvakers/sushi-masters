@@ -1,4 +1,4 @@
-import { Token } from "@/utils/Token";
+import { Token } from "@/utils/browser/Token";
 import { useUserStore } from "@/stores/user";
 
 export const beforeEachGuard = async (to, from, next) => {

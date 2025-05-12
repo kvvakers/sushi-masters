@@ -4,7 +4,7 @@ import ButtonComponent from "@/components/shared/ButtonComponent.vue";
 import { useRouter } from "vue-router";
 import { ref, reactive, computed } from "vue";
 import { registrate, authorizate } from "@/api/auth";
-import { Token } from "@/utils/Token";
+import { Token } from "@/utils/browser/Token";
 import LocaleSwitcher from "@/components/shared/LocaleSwitcher.vue";
 import { useUserStore } from "@/stores/user";
 

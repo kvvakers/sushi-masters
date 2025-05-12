@@ -1,12 +1,11 @@
 <script setup>
 import { availableLocales } from "@/i18n";
+import { Locale } from "@/utils/browser/Locale";
 import { useI18n } from "vue-i18n";
 
 const { locale } = useI18n();
 
-const switchLocale = (newLocale) => {
-  localStorage.setItem("lang", newLocale);
-};
+const switchLocale = (newLocale) => Locale.set(newLocale);
 </script>
 
 <template>
