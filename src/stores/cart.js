@@ -19,6 +19,9 @@ export const useCartStore = defineStore("cart", {
     },
     findInCart() {
       return (id) => this._cartList.find(i => i.id === id);
+    },
+    total() {
+      return this._cartList.reduce((total, item) => total + item.price * item.quantity, 0);
     }
   },
   actions: {

@@ -26,7 +26,7 @@ export const useNotificationPopupStore = defineStore('notification-popup', {
 
       setTimeout(() => {
         this._visible = false
-      }, 3000);
+      }, 1000);
     },
   },
 });
