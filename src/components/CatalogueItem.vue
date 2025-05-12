@@ -1,6 +1,6 @@
 <script setup>
 import ButtonComponent from "@/components/shared/ButtonComponent.vue";
-import { NotificationType } from "@/enums/NotificationType";
+import { NotificationType } from "@/constants/NotificationType";
 import { useCartStore } from "@/stores/cart";
 import { notify } from "@/utils/notify";
 import { getUrlFromPath } from "@/utils/url";

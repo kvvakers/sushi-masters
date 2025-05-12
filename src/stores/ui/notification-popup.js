@@ -1,4 +1,4 @@
-import { NotificationType } from '@/enums/NotificationType';
+import { NotificationType } from '@/constants/NotificationType';
 import { defineStore } from 'pinia'
 
 export const useNotificationPopupStore = defineStore('notification-popup', {

@@ -6,7 +6,7 @@ import { useForm } from "vee-validate";
 import * as yup from "yup";
 import { useGoodsStore } from "@/stores/goods";
 import { notify } from "@/utils/notify";
-import { NotificationType } from "@/enums/NotificationType";
+import { NotificationType } from "@/constants/NotificationType";
 
 const goodsStore = useGoodsStore();
 const route = useRoute();
