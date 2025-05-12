@@ -4,8 +4,9 @@ import { NotificationType } from "@/enums/NotificationType";
 import { useCartStore } from "@/stores/cart";
 import { notify } from "@/utils/notify";
 import { getUrlFromPath } from "@/utils/url";
+import { computed } from "vue";
 
-defineProps({
+const props = defineProps({
   item: {
     required: true,
   },
@@ -16,10 +17,14 @@ defineProps({
 
 const cartStore = useCartStore();
 
+const isInCart = computed(() => {
+  return cartStore.exists(props.item.id);
+})
+
 const addToCart = (id) => {
   cartStore.addToCart(id)
-  .then(() => notify("Cart updated successfully! 🛒", NotificationType.SUCCESS))
-  .catch(() => notify("Something went wrong! 😒", NotificationType.ERROR));
+    .then(() => notify("Cart updated successfully! 🛒", NotificationType.SUCCESS))
+    .catch(() => notify("Something went wrong! 😒", NotificationType.ERROR));
 }
 
 </script>
@@ -46,7 +51,13 @@ const addToCart = (id) => {
           </RouterLink>
         </template>
         <template v-else>
-          <ButtonComponent @click="addToCart(item.id)" class="item-catalogue__buy _button-alt">{{ $t("add-to-cart") }}</ButtonComponent>
+          <ButtonComponent
+            @click="addToCart(item.id)"
+            :disabled="isInCart"
+            :class="['item-catalogue__buy', isInCart ? '_button' : '_button-alt']"
+          >
+            {{ isInCart ? $t("already-in-cart") : $t("add-to-cart") }}
+          </ButtonComponent>
         </template>
       </div>
     </div>

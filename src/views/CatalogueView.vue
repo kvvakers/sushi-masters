@@ -2,15 +2,18 @@
 import LayoutDefault from "@/layouts/LayoutDefault.vue";
 import { onMounted } from "vue";
 import { useGoodsStore } from "@/stores/goods";
+import { useCartStore } from "@/stores/cart";
 import "@/assets/styles/CatalogueView.scss";
 import CatalogueItem from "@/components/CatalogueItem.vue";
 import ItemsNotExists from "@/components/ItemsNotExists.vue";
 
 const goodsStore = useGoodsStore();
+const cartStore = useCartStore();
 
 onMounted(() => {
   goodsStore.fetchGoods();
   goodsStore.fetchCategories();
+  cartStore.fetchCart();
 });
 </script>
 

@@ -24,7 +24,7 @@ export const postCartList = (payload) => {
   });
 };
 
-export const clearCartItem = (id) => {
+export const deleteCartItem = (id) => {
   return new Promise((resolve, reject) => {
     axios
       .delete(`cart/items/${id}`)

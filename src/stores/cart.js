@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
-import { getCartList } from "@/api/cart";
+import { deleteCartItem, getCartList } from "@/api/cart";
 import { withErrorHandling } from "@/api/error";
 import { postCartList } from "@/api/cart";
-import { notify } from "@/utils/notify";
 
 export const useCartStore = defineStore("cart", {
   state: () => ({
@@ -12,29 +11,35 @@ export const useCartStore = defineStore("cart", {
     cartList() {
       return this._cartList;
     },
+    cartIdSet(state) {
+      return new Set(state._cartList.map(i => i.sushiId));
+    },
+    exists() {
+      return (id) => this.cartIdSet.has(id);
+    }
   },
   actions: {
     addToCart(sushiId, quantity = 1) {
-      const item = this._cartList.find(i => i.id === sushiId);
+      let item = this.exists(sushiId);
       if (item === undefined) {
-        this._cartList.push({
+        item = {
           sushiId,
           quantity,
-        });
+        };
+        this.cartList.push(item);
       } else {
         item.quantity = quantity;
       }
 
-      return this.postCart();
+      return this.postCart(item);
     },
-    postCart() {
+    postCart(item) {
       return withErrorHandling(
-        postCartList(this._cartList)
+        postCartList(item)
       )
         .then((res) => {
-          this._cartList = res.data;
+          item = res.data;
           console.log(this._cartList);
-          notify("test");
         })
         .catch((err) => {
           console.log("addToCart error ", err);
@@ -49,10 +54,21 @@ export const useCartStore = defineStore("cart", {
         getCartList()
       )
         .then((res) => {
-          this._cartList = res.data;
+          this._cartList = res.data.items;
         })
         .catch((err) => {
           console.log("fetchCart error ", err);
+        });
+    },
+    deleteItem(sushiId) {
+      return withErrorHandling(
+        deleteCartItem(sushiId)
+      )
+        .then((res) => {
+          this._cartList = res.data.items;
+        })
+        .catch((err) => {
+          console.log("deleteItem error ", err);
         });
     },
 
