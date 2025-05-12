@@ -12,17 +12,17 @@ export const mainRoutes = [
       {
         path: "catalogue",
         name: "catalogue",
-        component: () => import("@/views/home/CatalogueView.vue"),
+        component: () => import("@/views/home/catalogue/CatalogueView.vue"),
       },
       {
         path: "cart",
         name: "cart",
-        component: () => import("@/views/home/CartView.vue"),
+        component: () => import("@/views/home/cart/CartView.vue"),
       },
       {
         path: "payment",
         name: "payment",
-        component: () => import("@/views/home/PaymentView.vue"),
+        component: () => import("@/views/home/payment/PaymentView.vue"),
       },
     ]
   },

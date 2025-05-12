@@ -16,7 +16,7 @@ export const adminRoutes = [
         path: "orders",
         name: "admin-orders",
         meta: { requiresAdmin: true, layout: "AdminLayout" },
-        component: () => import("@/views/home/CatalogueView.vue"),
+        component: () => import("@/views/home/catalogue/CatalogueView.vue"),
       },
       {
         path: "/catalogue-editing/:id",
