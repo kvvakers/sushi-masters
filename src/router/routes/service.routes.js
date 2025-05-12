@@ -2,7 +2,7 @@ export const serviceRoutes = [
   {
     path: "/not-found",
     name: "not-found",
-    component: () => import("@/views/NotFoundView.vue"),
+    component: () => import("@/views/core/NotFoundView.vue"),
   },
   {
     path: "/:pathMatch(.*)*",
