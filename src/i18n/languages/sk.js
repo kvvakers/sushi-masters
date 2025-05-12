@@ -59,5 +59,6 @@ export default {
   "edit": "Upraviť",
   "add-to-cart": "Do košíka",
   "already-in-cart": "Už v košíku",
-  "delete": "Vymazať"
+  "delete": "Vymazať",
+  "go-to-payment": "Prejsť k platbe"
 }

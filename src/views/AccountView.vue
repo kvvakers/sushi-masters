@@ -6,6 +6,7 @@ import { ref, reactive, computed } from "vue";
 import { registrate, authorizate } from "@/api/auth";
 import { Token } from "@/utils/Token";
 import LocaleSwitcher from "@/components/shared/LocaleSwitcher.vue";
+import { useUserStore } from "@/stores/user";
 
 // FIXME: veelidate
 const isAuth = ref(false);
@@ -55,6 +56,8 @@ const validatePassword = () => {
 };
 
 const handleResponse = (res) => {
+  const userStore = useUserStore();
+  userStore.fetchUser();
   Token.set(res.data.token);
   router.push({ name: "catalogue" });
 };

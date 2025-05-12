@@ -59,5 +59,6 @@ export default {
   "edit": "Редагувати",
   "add-to-cart": "В кошик",
   "already-in-cart": "Вже в кошику",
-  "delete": "Видалити"
+  "delete": "Видалити",
+  "go-to-payment": "Перейти до оплати"
 }

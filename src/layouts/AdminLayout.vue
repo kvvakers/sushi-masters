@@ -41,7 +41,7 @@ const route = useRoute();
       </div>
     </div>
   </header>
-  <slot></slot>
+  <RouterView />
 </template>
 
 <style lang="scss">

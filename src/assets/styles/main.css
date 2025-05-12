@@ -19,7 +19,7 @@ body {
 ._container {
   max-width: 1920px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 ._image {
   display: block;

@@ -59,5 +59,6 @@ export default {
   "edit": "Edit",
   "add-to-cart": "Add to Cart",
   "already-in-cart": "Already in cart",
-  "delete": "Remove"
+  "delete": "Remove",
+  "go-to-payment": "Go to payment"
 }

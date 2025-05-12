@@ -13,6 +13,9 @@ export const useUserStore = defineStore("user", {
     userRole() {
       return this._user.role;
     },
+    isAdmin() {
+      return this.userRole === "ROLE_ADMIN";
+    },
     exists() {
       return this._user !== undefined;
     }
@@ -36,5 +39,8 @@ export const useUserStore = defineStore("user", {
     setUser(user) {
       this._user = user;
     },
+    clear() {
+      this._user = undefined;
+    }
   },
 });

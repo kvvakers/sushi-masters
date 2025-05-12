@@ -9,7 +9,7 @@ const userStore = useUserStore();
 <template>
   <header class="header">
     <div class="header__top _flex _ai-c _jc-c">
-      <RouterLink to="/catalogue" class="header__logo _image">
+      <RouterLink to="/" class="header__logo _image">
         <img src="../assets/img/logo.png" alt="" />
       </RouterLink>
     </div>
@@ -23,20 +23,20 @@ const userStore = useUserStore();
           <div class="_flex _jc-sb _ai-c _gap-x-16">
             <LocaleSwitcher />
             <template v-if="userStore.exists">
-              <RouterLink v-if="userStore.userRole" to="/admin" class="_flex _ai-c _gap-x-8">
+              <RouterLink v-if="userStore.isAdmin" :to="{ name: 'admin' }" class="_flex _ai-c _gap-x-8">
                 <i class="material-icons">manage_accounts</i>
                 {{ $t("admin") }}
               </RouterLink>
-              <RouterLink to="/cart" class="_flex _ai-c _gap-x-8">
+              <RouterLink :to="{ name: 'cart' }" class="_flex _ai-c _gap-x-8">
                 <i class="material-icons basket">shopping_basket</i>
                 {{ $t("cart") }}
               </RouterLink>
-              <RouterLink to="/log-out" class="_flex _ai-c _gap-x-8">
+              <RouterLink :to="{ name: 'log-out' }" class="_flex _ai-c _gap-x-8">
                 <i class="material-icons">logout</i>
                 {{ $t("sign-out") }}
               </RouterLink>
             </template>
-            <RouterLink v-else to="/account" class="_flex _ai-c _gap-x-8">
+            <RouterLink v-else :to="{ name: 'account' }" class="_flex _ai-c _gap-x-8">
               <i class="material-icons">person</i>
               {{ $t("sign-in") }}
             </RouterLink>
