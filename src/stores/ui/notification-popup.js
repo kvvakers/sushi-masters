@@ -19,14 +19,17 @@ export const useNotificationPopupStore = defineStore('notification-popup', {
     },
   },
   actions: {
-    show(message, type = NotificationType.INFO) {
-      this._message = message;
-      this._type = type;
-      this._visible = true;
+    show(message, type = NotificationType.INFO, delay = 1000) {
+      return new Promise((resolve) => {
+        this._message = message;
+        this._type = type;
+        this._visible = true;
 
-      setTimeout(() => {
-        this._visible = false
-      }, 1000);
+        setTimeout(() => {
+          this._visible = false;
+          resolve();
+        }, delay);
+      });
     },
   },
 });
