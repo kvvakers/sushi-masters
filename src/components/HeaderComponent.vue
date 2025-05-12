@@ -1,15 +1,9 @@
 <script setup lang="ts">
 import { useUserStore } from "@/stores/user";
-import { availableLocales } from "@/i18n";
-import { useI18n } from "vue-i18n";
+import LocaleSwitcher from "./shared/LocaleSwitcher.vue";
 
 const userStore = useUserStore();
-const { locale } = useI18n();
 
-const switchLocale = (newLocale) => {
-  locale.value = newLocale;
-  localStorage.setItem("lang", newLocale);
-};
 </script>
 
 <template>
@@ -27,11 +21,7 @@ const switchLocale = (newLocale) => {
         </div>
         <div class="bottom-header__end">
           <div class="_flex _jc-sb _ai-c _gap-x-16">
-            <select :value="locale" @change="switchLocale($event.target.value)">
-              <option v-for="lang in availableLocales" :key="lang.locale" :value="lang.locale">
-                {{ lang.label }}
-              </option>
-            </select>
+            <LocaleSwitcher />
             <template v-if="userStore.exists">
               <RouterLink v-if="userStore.userRole" to="/admin" class="_flex _ai-c _gap-x-8">
                 <i class="material-icons">manage_accounts</i>

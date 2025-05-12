@@ -5,6 +5,7 @@ import { useRouter } from "vue-router";
 import { ref, reactive, computed } from "vue";
 import { registrate, authorizate } from "@/api/auth";
 import { Token } from "@/utils/Token";
+import LocaleSwitcher from "@/components/shared/LocaleSwitcher.vue";
 
 // FIXME: veelidate
 const isAuth = ref(false);
@@ -136,6 +137,9 @@ const auth = () => {
       <ButtonComponent @click-hoisting="isAuth = !isAuth" class="account__button _button">{{
         isAuth ? $t("sign-up") : $t("sign-in")
       }}</ButtonComponent>
+      <div class="account__locale">
+        <LocaleSwitcher />
+      </div>
       <span v-if="error">{{ error }}</span>
     </div>
   </div>
@@ -159,6 +163,11 @@ const auth = () => {
       text-align: center;
       color: var(--color-red);
     }
+  }
+
+  &__locale {
+    max-width: 50%;
+    margin: 0 auto;
   }
 }
 </style>
