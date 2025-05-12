@@ -1,14 +1,16 @@
 <script setup>
 import InputComponent from "@/components/shared/InputComponent.vue";
 import { computed, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 import { useGoodsStore } from "@/stores/goods";
-import { postGoogs } from "@/api/goods";
+import { notify } from "@/utils/notify";
+import { NotificationType } from "@/enums/NotificationType";
 
 const goodsStore = useGoodsStore();
 const route = useRoute();
+const router = useRouter();
 
 const id = parseInt(route.params.id[0]);
 const isEdit = computed(() => id !== 0);
@@ -72,7 +74,14 @@ const submitForm = async () => {
 
   formData.append("sushi", new Blob([JSON.stringify(sushiData)], { type: "application/json" }));
   console.log(formData);
-  await postGoogs(formData);
+  goodsStore.postGoods(formData)
+    .then(() => {
+      notify("Catalogue updated successfully! 🛒", NotificationType.SUCCESS)
+        .then(() => {
+          router.push({ name: 'admin' })
+        })
+    })
+    .catch(() => notify("Something went wrong! 😒", NotificationType.ERROR));
 };
 
 const handleSubmitForm = handleSubmit(submitForm);

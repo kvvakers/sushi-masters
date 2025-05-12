@@ -1,5 +1,14 @@
 <script setup>
 import { useRoute } from "vue-router";
+import { useGoodsStore } from "@/stores/goods";
+import { onMounted } from "vue";
+
+const goodsStore = useGoodsStore();
+
+onMounted(() => {
+  goodsStore.fetchGoods();
+  goodsStore.fetchCategories();
+});
 const tabs = [
   {
     name: "catalogue",

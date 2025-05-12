@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { getCategories, getGoods } from "@/api/goods";
+import { getCategories, getGoods, postGoogs } from "@/api/goods";
 import { withErrorHandling } from "@/api/error";
 
 export const useGoodsStore = defineStore("goods", {
@@ -43,6 +43,17 @@ export const useGoodsStore = defineStore("goods", {
         })
         .catch((err) => {
           console.log("fetchCategories error ", err);
+        });
+    },
+    postGoods(data) {
+      return withErrorHandling(
+        postGoogs(data)
+      )
+        .then((res) => {
+          this._goods.push(res.data);
+        })
+        .catch((err) => {
+          console.log("postGoods error ", err);
         });
     },
 

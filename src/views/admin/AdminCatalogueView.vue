@@ -3,14 +3,8 @@ import "@/assets/styles/CatalogueView.scss";
 import CatalogueItem from "@/components/CatalogueItem.vue";
 import ItemsNotExists from "@/components/ItemsNotExists.vue";
 import { useGoodsStore } from "@/stores/goods";
-import { onMounted } from "vue";
 
 const goodsStore = useGoodsStore();
-
-onMounted(() => {
-  goodsStore.fetchGoods();
-  goodsStore.fetchCategories();
-});
 </script>
 
 <template>
