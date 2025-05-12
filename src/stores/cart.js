@@ -16,17 +16,19 @@ export const useCartStore = defineStore("cart", {
     },
     exists() {
       return (id) => this.cartIdSet.has(id);
+    },
+    findInCart() {
+      return (id) => this._cartList.find(i => i.id === id);
     }
   },
   actions: {
     addToCart(sushiId, quantity = 1) {
-      let item = this.exists(sushiId);
+      let item = this.findInCart(sushiId);
       if (item === undefined) {
         item = {
           sushiId,
           quantity,
         };
-        this.cartList.push(item);
       } else {
         item.quantity = quantity;
       }
@@ -38,8 +40,7 @@ export const useCartStore = defineStore("cart", {
         postCartList(item)
       )
         .then((res) => {
-          item = res.data;
-          console.log(this._cartList);
+          this.replaceLocalItem(res.data)
         })
         .catch((err) => {
           console.log("addToCart error ", err);
@@ -64,9 +65,7 @@ export const useCartStore = defineStore("cart", {
       return withErrorHandling(
         deleteCartItem(sushiId)
       )
-        .then((res) => {
-          this._cartList = res.data.items;
-        })
+        .then(() => this.deleteLocalItem(sushiId))
         .catch((err) => {
           console.log("deleteItem error ", err);
         });
@@ -75,5 +74,12 @@ export const useCartStore = defineStore("cart", {
     setCart(cartList) {
       this._cartList = cartList;
     },
+    deleteLocalItem(id) {
+      this._cartList = this._cartList.filter(i => i.sushiId !== id);
+    },
+    replaceLocalItem(item) {
+      this.deleteLocalItem(item.sushiId);
+      this._cartList.push(item);
+    }
   },
 });
