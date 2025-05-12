@@ -6,6 +6,7 @@ import { ref, reactive, computed } from "vue";
 import { registrate, authorizate } from "@/api/auth";
 import { Token } from "@/utils/Token";
 
+// FIXME: veelidate
 const isAuth = ref(false);
 const error = ref("");
 const router = useRouter();
@@ -24,18 +25,6 @@ const state = reactive({
     errors: [],
   },
 });
-// const name = reactive({
-//   value: "",
-//   errors: [],
-// });
-// const phone = reactive({
-//   value: "",
-//   errors: [],
-// });
-// const password = reactive({
-//   value: "",
-//   errors: [],
-// });
 
 const hasRegErrors = computed(() => {
   return state.name.errors.length > 0 || hasAuthErrors.value;
@@ -106,23 +95,23 @@ const auth = () => {
 
 <template>
   <div class="account">
-    <h2 class="account__title">{{ isAuth ? "Увійти" : "Рєєстрація" }}</h2>
+    <h2 class="account__title">{{ isAuth ? $t("sign-in") : $t("sign-up") }}</h2>
     <div>
       <InputComponent
         v-if="!isAuth"
         v-model="state.name.value"
         @update:model-value="validateName"
         :errors="state.name.errors"
-        placeholder="Ім'я"
-        name="Ім'я"
+        :placeholder="$t('first-name-placeholder')"
+        :name="$t('first-name')"
         class="account__input _input"
       />
       <InputComponent
         v-model="state.phone.value"
         @update:model-value="!isAuth ? validatePhone() : () => {}"
         :errors="state.phone.errors"
-        placeholder="Телефон"
-        name="Номер телефону"
+        :placeholder="$t('phone-placeholder')"
+        :name="$t('phone')"
         type="phone"
         class="account__input _input"
       />
@@ -130,8 +119,8 @@ const auth = () => {
         v-model="state.password.value"
         @update:model-value="!isAuth ? validatePassword() : () => {}"
         :errors="state.password.errors"
-        placeholder="Пароль"
-        name="Пароль"
+        :placeholder="$t('password-placeholder')"
+        :name="$t('password')"
         type="password"
         class="account__input _input"
       />
@@ -142,10 +131,10 @@ const auth = () => {
         @click-hoisting="() => (isAuth ? auth() : reg())"
         class="account__button _button-alt"
       >
-        {{ isAuth ? "Увійти" : "Рєєстрація" }}
+        {{ isAuth ? $t("sign-in") : $t("sign-up") }}
       </ButtonComponent>
       <ButtonComponent @click-hoisting="isAuth = !isAuth" class="account__button _button">{{
-        isAuth ? "Рєєстрація" : "Увійти"
+        isAuth ? $t("sign-up") : $t("sign-in")
       }}</ButtonComponent>
       <span v-if="error">{{ error }}</span>
     </div>
