@@ -1,6 +1,7 @@
 <script setup>
 import ButtonComponent from "@/components/shared/ButtonComponent.vue";
 import { NotificationType } from "@/constants/NotificationType";
+import { RouteName } from "@/constants/RouteName";
 import { useCartStore } from "@/stores/cart";
 import { notify } from "@/utils/notify";
 import { getUrlFromPath } from "@/utils/url";
@@ -45,7 +46,7 @@ const addToCart = (id) => {
       <div class="_flex _jc-sb _ai_c _gap-x-8">
         <div class="item-catalogue__price">{{ item.price }}грн</div>
         <template v-if="isAdmin">
-          <RouterLink :to="{ name: 'catalogue-editing', params: { id: item.id } }"
+          <RouterLink :to="{ name: RouteName.ADMIN_EDITING, params: { id: item.id } }"
             class="item-catalogue__buy _button-alt">
             {{ $t("edit") }}
           </RouterLink>

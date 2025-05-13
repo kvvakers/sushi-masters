@@ -3,6 +3,7 @@ import ItemsNotExists from "@/components/ItemsNotExists.vue";
 import { useCartStore } from "@/stores/cart";
 import { onMounted } from "vue";
 import CartItem from "./components/CartItem.vue";
+import { RouteName } from "@/constants/RouteName";
 
 const cartStore = useCartStore();
 
@@ -24,7 +25,7 @@ onMounted(() => {
           <span>{{ cartStore.total }} грн</span>
         </div>
         <div class="cart__payment _flex _ai-c _jc-sb _gap-x-32">
-          <RouterLink :to="{ name: 'payment' }" class="_button-alt">
+          <RouterLink :to="{ name: RouteName.PAYMENT }" class="_button-alt">
             <div class="_flex _ai-c _jc-c _gap-x-8">
               <i class="material-icons basket">savings</i>
               <span>{{ $t("go-to-payment") }}</span>

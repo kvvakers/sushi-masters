@@ -2,6 +2,7 @@
 import { useRoute } from "vue-router";
 import { useGoodsStore } from "@/stores/goods";
 import { onMounted } from "vue";
+import { RouteName } from "@/constants/RouteName";
 
 const goodsStore = useGoodsStore();
 
@@ -12,11 +13,11 @@ onMounted(() => {
 const tabs = [
   {
     name: "catalogue",
-    route: "admin-catalogue",
+    route: RouteName.ADMIN_CATALOGUE,
   },
   {
     name: "orders",
-    route: "admin-orders",
+    route: RouteName.ADMIN_ORDERS,
   },
 ];
 
@@ -27,11 +28,11 @@ const route = useRoute();
   <header class="admin-header">
     <div class="admin-header__top top-admin-header">
       <div class="top-admin-header__container _container _flex _ai-c _jc-sb _gap-x-32">
-        <router-link :to="{ name: 'admin-catalogue' }" class="top-admin-header__logo _image">
+        <router-link :to="{ name: RouteName.ADMIN_CATALOGUE }" class="top-admin-header__logo _image">
           <img src="@/assets/img/logo.svg" />
         </router-link>
         <div class="_flex _ai-c _gap-x-32">
-          <router-link :to="{ name: 'catalogue' }" class="top-header__title">
+          <router-link :to="{ name: RouteName.CATALOGUE }" class="top-header__title">
             {{$t("home")}}
           </router-link>
           <h1 class="top-header__title">{{$t("admin")}}</h1>

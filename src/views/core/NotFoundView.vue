@@ -1,8 +1,13 @@
+<script setup lang="ts">
+import { RouteName } from '@/constants/RouteName';
+
+</script>
+
 <template>
   <div class="not-found _flex _f-dir-col _jc-c _ai-c _gap-y-16">
     <div class="not-found__title">404 &#128530;</div>
     <div class="not-found__text">Page Not Found</div>
-    <RouterLink :to="{ name: 'catalogue' }" class="not-found__button">{{ $t("catalogue") }}</RouterLink>
+    <RouterLink :to="{ name: RouteName.CATALOGUE }" class="not-found__button">{{ $t("catalogue") }}</RouterLink>
   </div>
 </template>
 

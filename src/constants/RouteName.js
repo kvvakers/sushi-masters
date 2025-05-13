@@ -7,7 +7,7 @@ export const RouteName = Object.freeze({
   ADMIN: "admin",
   ADMIN_CATALOGUE: "admin-catalogue",
   ADMIN_ORDERS: "admin-orders",
-  ADMIN_EDITING: "admin-editing",
+  ADMIN_EDITING: "catalogue-editing",
 
   ACCOUNT: "account",
   LOGOUT: "log-out",

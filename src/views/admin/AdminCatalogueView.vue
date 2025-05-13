@@ -2,6 +2,7 @@
 import "@/assets/styles/CatalogueView.scss";
 import CatalogueItem from "@/components/CatalogueItem.vue";
 import ItemsNotExists from "@/components/ItemsNotExists.vue";
+import { RouteName } from "@/constants/RouteName";
 import { useGoodsStore } from "@/stores/goods";
 
 const goodsStore = useGoodsStore();
@@ -18,7 +19,7 @@ const goodsStore = useGoodsStore();
       </ul>
       <ItemsNotExists v-else />
       <RouterLink
-        :to="{ name: 'catalogue-editing', params: { id: 0 } }"
+        :to="{ name: RouteName.ADMIN_EDITING, params: { id: 0 } }"
         class="item-catalogue__add _button"
       >
         {{ $t("add-good") }}
