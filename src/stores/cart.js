@@ -83,6 +83,9 @@ export const useCartStore = defineStore("cart", {
     replaceLocalItem(item) {
       this.deleteLocalItem(item.sushiId);
       this._cartList.push(item);
+    },
+    clearLocalCart() {
+      this._cartList = [];
     }
   },
 });

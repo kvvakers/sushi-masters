@@ -38,6 +38,8 @@ export default {
 
   "catalogue": "Каталог",
   "orders": "Замовлення",
+  "my-orders": "Мої замовлення",
+  "order-id": "Номер замовлення",
 
   "home": "Головна",
   "total": "Разом",
@@ -60,5 +62,9 @@ export default {
   "add-to-cart": "В кошик",
   "already-in-cart": "Вже в кошику",
   "delete": "Видалити",
-  "go-to-payment": "Перейти до оплати"
+  //TODO: rename constant & value && add values to another locales
+  "go-to-payment": "Перейти до оплати",
+  "order": "Оформлення замовлення",
+  "make-order": "Замовити",
+  "cancel": "Відміна",
 }

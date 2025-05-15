@@ -2,7 +2,8 @@ export const RouteName = Object.freeze({
   MAIN: "main",
   CATALOGUE: "catalogue",
   CART: "cart",
-  PAYMENT: "payment",
+  ORDER: "order",
+  ORDERS: "orders",
 
   ADMIN: "admin",
   ADMIN_CATALOGUE: "admin-catalogue",

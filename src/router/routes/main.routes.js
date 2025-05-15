@@ -22,9 +22,14 @@ export const mainRoutes = [
         component: () => import("@/views/home/cart/CartView.vue"),
       },
       {
-        path: "payment",
-        name: RouteName.PAYMENT,
-        component: () => import("@/views/home/payment/PaymentView.vue"),
+        path: "orders",
+        name: RouteName.ORDERS,
+        component: () => import("@/views/home/orders/OrdersView.vue"),
+      },
+      {
+        path: "order",
+        name: RouteName.ORDER,
+        component: () => import("@/views/home/orders/order/OrderView.vue"),
       },
     ]
   },
